@@ -28,7 +28,7 @@ app.use(cookiesParser());
 
 // cors configrations
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://ai-quiz-frontend-red.vercel.app",
     credentials: true,
 }));
 app.get("/", (req, res) => {
