@@ -32,7 +32,7 @@ app.use(cors({
     credentials: true,
 }));
 app.get("/", (req, res) => {
-  res.send("deployed 🚀");
+  res.send({ message: "deployed 🚀"});
 });
 app.use("/api/v1", authRouter);
 
