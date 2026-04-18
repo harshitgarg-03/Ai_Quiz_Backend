@@ -31,6 +31,9 @@ app.use(cors({
     origin: "http://localhost:5173",
     credentials: true,
 }));
+app.get("/", (req, res) => {
+  res.send("deployed 🚀");
+});
 app.use("/api/v1", authRouter);
 
 export default app;
