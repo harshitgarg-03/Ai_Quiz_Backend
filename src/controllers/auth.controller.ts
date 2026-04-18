@@ -124,7 +124,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
 
 export const logout = asyncHandler(async (req: Request, res: Response) => {
     await UserModel.findByIdAndUpdate(
-        req.user?._id,
+        (req.user as any)?._id,
         {
             $set: {
                 refreshToken: "",
@@ -177,7 +177,7 @@ export const verifyEmail = asyncHandler(async (req: Request, res: Response) => {
 });
 
 export const resendEmailVerification = asyncHandler(async (req: Request, res: Response) => {
-    const user = await UserModel.findById(req.user?._id);
+    const user = await UserModel.findById((req.user as any)?._id);
     if(!user) throw new ApiError(404, "User does not exist.");
 
     if(user.isVerified) throw new ApiError(400, "User alredy verified.");
@@ -296,7 +296,7 @@ export const resetForgotPassword = asyncHandler(async (req: Request, res: Respon
 
 export const changeCurrentPassword = asyncHandler(async (req: Request, res: Response) => {
     const { oldPassword, password: newPassword } = req.body;
-    const user = await UserModel.findById(req.user?._id);
+    const user = await UserModel.findById((req.user as any)?._id);
     if (!user) throw new ApiError(400, "User not found.");
     const isPasswordValid = await user?.isPasswordCorrect(oldPassword);
     if(!isPasswordValid) throw new ApiError(400, "Invalid Old Password.");

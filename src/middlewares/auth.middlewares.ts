@@ -18,7 +18,7 @@ export const auth = asyncHandler(async (req: Request, res: Response, next: NextF
         ).exec();
         
         if(!user) throw new ApiError(401, "Invalid access token");
-        req.user = user;
+        req.user = user as any;
         next();
     } catch (error) {
         throw new ApiError(401, "Invalid access token");
