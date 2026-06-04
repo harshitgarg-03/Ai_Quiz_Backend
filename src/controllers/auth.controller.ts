@@ -1,4 +1,4 @@
-import type { Request, Response } from "express";
+import type {CookieOptions, Request, Response } from "express";
 import { UserModel } from "../models/user.model.js";
 import { ApiError } from "../utils/apiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
@@ -100,9 +100,10 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
         "-password -verificationToken -resetPasswordToken -refreshToken"
     );
 
-    const options = {
+    const options: CookieOptions = {
         httpOnly: true,
         secure: true,
+        sameSite: "none"
     };
 
     return res
