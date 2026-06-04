@@ -23,7 +23,7 @@ export function formatQuizData(data: any, type: string) {
                         id: String.fromCharCode(65 + i), // A, B, C, D
                         text: opt,
                     })),
-                    answer: q.correctAnswer || q.answer || "",
+                    correctAnswer: q.correctAnswer || q.answer || "",
                 };
 
             case "fillup":
@@ -37,7 +37,7 @@ export function formatQuizData(data: any, type: string) {
                     ...base,
                     errorCode: q.errorCode || "",
                     task: q.task || "",
-                    correctCode: q.correctCode || "",
+                    correctAnswer: q.correctCode || "",
                 };
 
             default:
